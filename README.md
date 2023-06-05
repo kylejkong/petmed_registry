@@ -32,4 +32,4 @@ Below are the files created for the app and their purpose:
 
 
 
-    Writteb By Kyle J Kong
+    Written By Kyle J Kong
