@@ -283,20 +283,28 @@ def registerpet():
 
 
         petPhoto = request.files.get('petPhoto')
+        # limit file size to 1MB (1048576 bytes)
+    
+
         if petPhoto:
+            if len(petPhoto.read()) > 1048576:
+                return apology("Picture cannot exceed 1MB.", redirect_url="registerpet")
             # Use petName as the filename for the uploaded photo
             filename = secure_filename(petName) + os.path.splitext(petPhoto.filename)[1]
             petPhotoPath = os.path.join(UPLOAD_FOLDER, filename)
             petPhoto.save(petPhotoPath)
             print(f"File saved to: {os.path.abspath(petPhotoPath)}")
             petPhotoPath = os.path.abspath(petPhotoPath)
+        else:
+            filename = None
+            petPhotoPath = None
 
         if user_id:
             db.execute("INSERT INTO pets (name, age, gender, species, medical_history, photo, microchip_number, user_id ) VALUES (:name, :age, :gender, :species, :medical_history, :photo, :microchip_number, :user_id)",
                 name=petName, age=petAge, gender=petGender, species=petSpecies,
                 medical_history=petMedicalHistory, photo=filename, microchip_number=petMicrochip, user_id = user_id)
 
-            return redirect("/userprofile")
+            return redirect("/med_records")
 
     return render_template('registerpet.html', petspecies=petspecies, petgender=petgender, user_id = user_id )
 
