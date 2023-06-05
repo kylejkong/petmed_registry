@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Regiser Pet
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row justify-content-center my-5">
+        <div class="col-md-6">
+            <h3 class="text-center mb-4">Register Your Pet</h3>
+            <form action="/registerpet" method="post" enctype="multipart/form-data">
+                <input type="hidden" id="user_id" name="user_id" value="{{ user_id }}">{{ user_id }}
+                <div class="form-group">
+                    <label for="petName">Pet Name</label>
+                    <input type="text" autocomplete="off" name="petName" id="petName" class="form-control" placeholder="Your pet's name." required>
+                </div>
+                <div class="form-group">
+                    <label for="petAge">Pet Age</label>
+                    <input type="number" name="petAge" id="petAge" class="form-control" placeholder="Your pet's age.">
+                </div>
+
+                <div class="form-group">
+                    <label for="petGender">Pet Gender</label>
+                    <select name="petGender"id="petGender" class="form-control">
+                        {% for n in petgender %}
+                        <option value="{{n}}">{{n}}</option>
+                        {% endfor %}
+                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="petSpecies">Pet Species</label>
+                    <select name="petSpecies" id="petSpecies" class="form-control">
+                        <option>Select a Species</option>
+                        {% for m in petspecies %}
+                        <option value="{{m}}">{{m}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="petMedicalHistory">Pet Medical History</label>
+                    <textarea name="petMedicalHistory" id="petMedicalHistory" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="petPhoto">Pet Photo</label>
+                    <input type="file" name="petPhoto" id="petPhoto">
+                </div>
+                <div class="form-group">
+                    <label for="petMicrochip">Pet Microchip Number</label>
+                    <input type="text" autocomplete="off" name="petMicrochip" id="petMicrochip" class="form-control" placeholder="Your pet's microchipnumber.">
+                </div>
+
+
+                <button type="submit" autofocus class="btn btn-primary btn-block mt-3">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

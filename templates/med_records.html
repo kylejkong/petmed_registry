@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    User's Profile
+{% endblock %}
+
+{% block main %}
+
+
+<div class="container" style="overflow-x: scroll; border: none;">
+    <div class="row justify-content-center my-2">
+
+        <h3 class="text-center mb-1">Your Pets Profile</h3>
+        <div class="card border-0">
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <th>Species</th>
+                  <th>Medical history</th>
+                  <th>Photo</th>
+                  <th>Microchip #</th>
+                  <th></th>
+                  <!-- add more column names here if needed -->
+                </tr>
+              </thead>
+              <tbody>
+                {% for pet in pets %}
+                <tr>
+                  <td>{{ pet.name }}</td>
+                  <td>{{ pet.age }}</td>
+                  <td>{{ pet.gender }}</td>
+                  <td>{{ pet.species }}</td>
+                  <td style="max-width: 500px; white-space: normal;">
+                    <button style="font-size: 10px" type="button" class="btn btn-link" data-toggle="modal" data-target="#medical_history_modal_{{ pet.id }}">View</button>
+                  </td>
+                  {% if pet.photo %}
+                  <td><img src="{{ url_for('test', filename=pet.photo) }}" width="40" height="40" alt="My Image"></td>
+                  {% else %}
+                  <td>No photo available</td>
+                  {% endif %}
+                  <td>{{ pet.microchip_number }}</td>
+                  <td></td>
+                  <!-- add more columns here if needed -->
+                </tr>
+
+                <!-- Modal -->
+                <div class="modal fade" id="medical_history_modal_{{ pet.id }}" tabindex="-1" aria-labelledby="medical_history_modal_label_{{ pet.id }}" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="medical_history_modal_label_{{ pet.id }}">{{ pet.name }}'s Medical History</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>{{ pet.medical_history }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h1>PetMed Registry</h1>
+        <p class="intro">PetMed Registry is an online platform where pet owners can register their pets with the local vet hospital and manage theirmedical records.</p>
+        <a href="/registerpet" class="btn btn-primary cta">Register Your Pet Today</a>
+      </div>
+    </div>
+    <div class="row services">
+      <div class="col-md-4">
+        <h3>Appointment Scheduling</h3>
+        <p>Book appointments with the vet hospital online and receive reminders for upcoming appointments.</p>
+      </div>
+      <div class="col-md-4">
+        <h3>Medical Record Management</h3>
+        <p>Store and manage your pet's medical records online, including vaccination history, medication prescriptions, and lab results.</p>
+      </div>
+      <div class="col-md-4">
+        <h3>Lost and Found Reporting</h3>
+        <p>Report lost or found pets on our platform and browse through lost and found listings to help reunite pets with their owners.</p>
+      </div>
+    </div>
+    <div class="row testimonial">
+      <div class="col-md-8 offset-md-2">
+        <blockquote class="blockquote text-center">
+          <p class="mb-0">"PetMed Registry has been a lifesaver for me and my furry friend! I can easily schedule appointments and access my pet's medical records from anywhere."</p>
+          <footer class="blockquote-footer">- Sarah M.</footer>
+        </blockquote>
+      </div>
+   </div>
+  </div>
+
+{% endblock %}

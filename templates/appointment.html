@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Regiser Pet
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row justify-content-center my-5">
+        <div class="col-md-6">
+            <h3 class="text-center mb-4">Book an Appointment</h3>
+            <form action="/appointment" method="post" enctype="multipart/form-data">
+
+                <input type="hidden" id="user_id" name="user_id" value="{{ user_id }}">
+
+
+                <div class="form-group">
+                  <label for="pet">Select a pet:</label>
+                  <select class="form-control" id="pet" name="pet">
+                    {% for pet in pets %}
+
+                    <option value="{{ pet['id'] }}">{{ pet['name'] }}</option>
+  
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="date">Appointment date:</label>
+                  <input type="date" id="date" name="date" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="time">Time:</label>
+                  <select id="time" name="time">
+                    <option value="">Select a time</option>
+                    {% for slot in available_slots %}
+                    <option value="{{ slot }}">{{ slot }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <button type="submit" autofocus class="btn btn-primary btn-block mt-3">Submit</button>
+              </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

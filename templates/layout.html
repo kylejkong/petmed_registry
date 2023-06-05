@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- http://getbootstrap.com/docs/5.1/ -->
+        <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+        <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- https://favicon.io/emoji-favicons/money-bag/ -->
+        <link href="/static/favicon.ico" rel="icon">
+
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <title>PetMed Registry: {% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body>
+
+        <nav class="bg-light border navbar navbar-expand-md navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <span class="p">P</span>
+                    <span class="e">e</span>
+                    <span class="t">t</span>
+                    <span class="m">M</span>
+                    <span class="e2">e</span>
+                    <span class="d">d</span>
+                    <span class="space">&nbsp;</span>
+                    <span class="r">R</span>
+                    <span class="e3">e</span>
+                    <span class="g">g</span>
+                    <span class="i">i</span>
+                    <span class="s">s</span>
+                    <span class="t2">t</span>
+                    <span class="r2">r</span">y</span>
+                </a>
+                <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    {% if session["user_id"] %}
+                        <ul class="navbar-nav me-auto mt-2">
+                            {% if session["username"] %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url_for('userprofile', id=session["user_id"])}}" id="profile-link">Welcome, {{ session["username"] }}</a>
+                            </li>
+
+
+
+                                    <li class="nav-item"><a class="nav-link" href="/registerpet">Register</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/appointment">Appointment</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/med_records">Medical Records</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/lostnfound">Lost & Found</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a></li>
+                                {% endif %}
+
+
+                        </ul>
+                        <ul class="navbar-nav ms-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+
+                            <li class="nav-item"><a class="nav-link" href="/allpets">All Pets</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/allusers">All Users</a></li>
+
+                        </ul>
+                    {% else %}
+                        <ul class="navbar-nav ms-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                        </ul>
+
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+
+        {% if get_flashed_messages() %}
+            <header>
+                <div class="alert alert-primary mb-0 text-center" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </header>
+        {% endif %}
+
+        <main class="container-fluid py-5 text-center">
+            {% block main %}{% endblock %}
+        </main>
+        <!-- <div id="loading" class="spinner-grow spinner-grow-sm" role="status">
+            <span class="sr-only"></span>
+        </div> -->
+
+        <footer class="mb-5 small text-center text-muted">
+            <p>Designed by Kyle Kong, all rights reserved &copy; 2023</p>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+
+    $(document).ready(function() {
+    // Change the link text to "My Profile" after 5 seconds
+    setTimeout(function() {
+        $('#profile-link').text('My Profile');
+    }, 2500);
+    });
+
+
+</script>
+</html>

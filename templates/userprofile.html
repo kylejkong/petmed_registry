@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    User's Profile
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+    <div class="row justify-content-center my-5">
+      <div class="col-md-8 col-lg-6">
+        <h3 class="text-center mb-4">User Profile</h3>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ user['user_id'] }}</h5>
+
+<h5 class="card-title">{{ user["name"] }}</h5>
+{% if user["phone"] %}
+  <p class="card-text"><strong>Phone:</strong> {{ user["phone"] }}</p>
+{% endif %}
+{% if user["email"] %}
+  <p class="card-text"><strong>Email:</strong> {{ user["email"] }}</p>
+{% endif %}
+{% if user["address"] %}
+  <p class="card-text"><strong>Address:</strong> {{ user["address"] }}</p>
+{% endif %}
+<a href="{{ url_for('editprofile', user_id=user['user_id']) }}" class="btn btn-primary">Edit Profile</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+    <h3><a href="/med_records" class="btn btn-primary cta">View Your Pets</a></h3>
+
+
+
+
+{% endblock %}
